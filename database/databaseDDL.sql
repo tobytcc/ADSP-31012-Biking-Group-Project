@@ -1,126 +1,133 @@
-CREATE TABLE IF NOT EXISTS CrashData_original (
-    CRASH_RECORD_ID INT AUTO_INCREMENT,
-    CRASH_DATE DATETIME,
-    POSTED_SPEED_LIMIT INT,
-    TRAFFIC_CONTROL_DEVICE VARCHAR(255),
-    WEATHER_CONDITION VARCHAR(255),
-    LIGHTING_CONDITION VARCHAR(255),
-    TRAFFICWAY_TYPE VARCHAR(255),
-    ROADWAY_SURFACE_COND VARCHAR(255),
-    CRASH_TYPE VARCHAR(255),
-    HIT_AND_RUN_I CHAR(1),
-    PRIM_CONTRIBUTORY_CAUSE VARCHAR(255),
-    STREET_NO INT,
-    STREET_DIRECTION CHAR(1),
-    STREET_NAME VARCHAR(255),
-    DOORING_I CHAR(1),
-    MOST_SEVERE_INJURY VARCHAR(255),
-    INJURIES_FATAL INT,
-    INJURIES_INCAPACITATING INT,
-    INJURIES_NON_INCAPACITATING INT,
-    CRASH_HOUR INT,
-    CRASH_DAY VARCHAR(255),
-    CRASH_MONTH INT,
-    loc_id, 
-    LATITUDE DECIMAL(9,6),
-    LONGITUDE DECIMAL(9,6), 
-    PRIMARY KEY(CRASH_RECORD_ID), 
-    CONSTRAINT `fk_CrashData_original_Locations_original` FOREIGN KEY (`loc_id`)
-        REFERENCES `bikes`.`Locations_original` (`loc_id`)
+CREATE TABLE IF NOT EXISTS crashdata_original (
+    crash_record_id INT AUTO_INCREMENT,
+    crash_date DATETIME,
+    posted_speed_limit INT,
+    traffic_control_device VARCHAR(255),
+    weather_condition VARCHAR(255),
+    lighting_condition VARCHAR(255),
+    trafficway_type VARCHAR(255),
+    roadway_surface_cond VARCHAR(255),
+    crash_type VARCHAR(255),
+    hit_and_run_i CHAR(1),
+    prim_contributory_cause VARCHAR(255),
+    street_no INT,
+    street_direction CHAR(1),
+    street_name VARCHAR(255),
+    dooring_i CHAR(1),
+    most_severe_injury VARCHAR(255),
+    injuries_fatal INT,
+    injuries_incapacitating INT,
+    injuries_non_incapacitating INT,
+    crash_hour INT,
+    crash_day VARCHAR(255),
+    crash_month INT,
+    loc_id INT, 
+    latitude DECIMAL(9,6),
+    longitude DECIMAL(9,6), 
+    PRIMARY KEY(crash_record_id), 
+    CONSTRAINT `fk_crashdata_original_locations_original` FOREIGN KEY (`loc_id`)
+        REFERENCES `bikes`.`locations_original` (`loc_id`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-
-CREATE TABLE IF NOT EXISTS BikeRacks_original (	
-    LATITUDE DECIMAL(9,6),
-    LONGITUDE DECIMAL(9,6),
-    LOCATION VARCHAR(255),
-    NAME VARCHAR(255),
-    QUANTITY INT,
-    TYPE VARCHAR(50),
-    RACK_ID INT(10) NOT NULL AUTO_INCREMENT, 
-    loc_id,
-    PRIMARY KEY(RACK_ID), 
-    CONSTRAINT `fk_BikeRacks_original_Locations_original` FOREIGN KEY (`loc_id`)
-        REFERENCES `bikes`.`Locations_original` (`loc_id`)
+CREATE TABLE IF NOT EXISTS bikeracks_original (	
+    latitude DECIMAL(9,6),
+    longitude DECIMAL(9,6),
+    location VARCHAR(255),
+    name VARCHAR(255),
+    quantity INT,
+    type VARCHAR(50),
+    rack_id INT(10) NOT NULL AUTO_INCREMENT, 
+    loc_id INT,
+    PRIMARY KEY(rack_id), 
+    CONSTRAINT `fk_bikeracks_original_locations_original` FOREIGN KEY (`loc_id`)
+        REFERENCES `bikes`.`locations_original` (`loc_id`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS DivvyStations_original (
-    STATION_ID INT,
-    STATION_NAME VARCHAR(255),
-    ADDRESS VARCHAR(255),
-    TOTAL_DOCKS INT,
-    LATITUDE DECIMAL(9,6),
-    LONGITUDE DECIMAL(9,6), 
-    loc_id,
-    PRIMARY KEY(STATION_ID),
-    CONSTRAINT `fk_DivvyStations_original_Locations_original` FOREIGN KEY (`loc_id`)
-        REFERENCES `bikes`.`Locations_original` (`loc_id`)
+CREATE TABLE IF NOT EXISTS divvystations_original (
+    station_id INT,
+    station_name VARCHAR(255),
+    address VARCHAR(255),
+    total_docks INT,
+    latitude DECIMAL(9,6),
+    longitude DECIMAL(9,6), 
+    loc_id INT,
+    PRIMARY KEY(station_id),
+    CONSTRAINT `fk_divvystations_original_locations_original` FOREIGN KEY (`loc_id`)
+        REFERENCES `bikes`.`locations_original` (`loc_id`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS DivvyTrips_original (
-    RIDE_ID VARCHAR(255),
-    RIDEABLE_TYPE VARCHAR(255),
-    STARTED_AT DATETIME,
-    ENDED_AT DATETIME,
-    START_STATION_NAME VARCHAR(255),
-    START_STATION_ID INT,
-    END_STATION_NAME VARCHAR(255),
-    END_STATION_ID INT,
-    START_LAT DECIMAL(9,6),
-    START_LNG DECIMAL(9,6),
-    END_LAT DECIMAL(9,6),
-    END_LNG DECIMAL(9,6),
-    MEMBER_CASUAL VARCHAR(6),
-    PRIMARY KEY(RIDE_ID)
-);
-
-CREATE TABLE IF NOT EXISTS SmartLocation_original (
-    TRACTCE VARCHAR(255),
-    BLKGRPCE VARCHAR(255),
-    TOTPOP INT,
-    COUNTHU INT,
-    HH INT,
-    P_WRKAGE DECIMAL(5,2),
-    AUTOOWN0 INT,
-    PCT_AO0 DECIMAL(5,2),
-    AUTOOWN1 INT,
-    PCT_AO1 DECIMAL(5,2),
-    AUTOOWN2P INT,
-    PCT_AO2P DECIMAL(5,2),
-    R_LOWWAGEWK INT,
-    R_MEDWAGEWK INT,
-    R_HIWAGEWK INT,
-    R_PCTLOWWAGE DECIMAL(5,2),
-    TOTEMP INT,
-    E_LOWWAGEWK INT,
-    E_MEDWAGEWK INT,
-    E_HIWAGEWK INT,
-    E_PCTLOWWAGE DECIMAL(5,2),
-    D3A DECIMAL(10,5),
-    D4A DECIMAL(10,5),
-    D5BR INT,
-    D5BE INT,
-    D5DR DECIMAL(10,5),
-    NATWALKIND DECIMAL(10,5)
-    BLK_GRP_ID INT(10) NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(BLK_GRP_ID)
-);
-
-CREATE TABLE IF NOT EXISTS bikes.Locations_original (
-  `GEOID` BIGINT NOT NULL ,
-  `STATE` INT(10) NOT NULL ,
-  `COUNTY` INT(10) NOT NULL ,
-  `TRACT` INT(10) NOT NULL ,
-  `BLOCKGRP` INT(10) NOT NULL ,
-  `LAT` FLOAT NOT NULL ,
-  `LNG` FLOAT NOT NULL ,
-  `LOC_ID` INT(10) NOT NULL , 
-  `BLK_GRP_ID` NOT NULL 
-  PRIMARY KEY (`LOC_ID`), 
-  CONSTRAINT `fk_Locations_original_SmartLocations_original` FOREIGN KEY (`BLK_GRP_ID`)
-        REFERENCES `bikes`.`SmartLocations_original` (`BLK_GRP_ID`)
+CREATE TABLE IF NOT EXISTS divvytrips_original (
+    ride_id VARCHAR(255),
+    rideable_type VARCHAR(255),
+    started_at DATETIME,
+    ended_at DATETIME,
+    start_station_name VARCHAR(255),
+    start_station_id INT,
+    end_station_name VARCHAR(255),
+    end_station_id INT,
+    start_lat DECIMAL(9,6),
+    start_lng DECIMAL(9,6),
+    end_lat DECIMAL(9,6),
+    end_lng DECIMAL(9,6),
+    member_casual VARCHAR(6),
+    start_loc_id INT,
+    end_loc_id INT,
+    PRIMARY KEY(ride_id),
+    CONSTRAINT `fk_divvytrips_original_locations_original_start` FOREIGN KEY (`start_loc_id`)
+        REFERENCES `bikes`.`locations_original` (`loc_id`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_divvytrips_original_locations_original_end` FOREIGN KEY (`end_loc_id`)
+        REFERENCES `bikes`.`locations_original` (`loc_id`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
-    );
+);
+
+CREATE TABLE IF NOT EXISTS smartlocation_original (
+    tractce VARCHAR(255),
+    blkgrpce VARCHAR(255),
+    totpop INT,
+    counthu INT,
+    hh INT,
+    p_wrkage DECIMAL(5,2),
+    autoown0 INT,
+    pct_ao0 DECIMAL(5,2),
+    autoown1 INT,
+    pct_ao1 DECIMAL(5,2),
+    autoown2p INT,
+    pct_ao2p DECIMAL(5,2),
+    r_lowwagewk INT,
+    r_medwagewk INT,
+    r_hiwagewk INT,
+    r_pctlowwage DECIMAL(5,2),
+    totemp INT,
+    e_lowwagewk INT,
+    e_medwagewk INT,
+    e_hiwagewk INT,
+    e_pctlowwage DECIMAL(5,2),
+    d3a DECIMAL(10,5),
+    d4a DECIMAL(10,5),
+    d5br INT,
+    d5be INT,
+    d5dr DECIMAL(10,5),
+    natwalkind DECIMAL(10,5),
+    blk_grp_id INT(10) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(blk_grp_id)
+);
+
+CREATE TABLE IF NOT EXISTS bikes.locations_original (
+  geoid BIGINT NOT NULL ,
+  state INT(10) NOT NULL ,
+  county INT(10) NOT NULL ,
+  tract INT(10) NOT NULL ,
+  blockgrp INT(10) NOT NULL ,
+  lat FLOAT NOT NULL ,
+  lng FLOAT NOT NULL ,
+  loc_id INT(10) NOT NULL , 
+  blk_grp_id INT NOT NULL ,
+  PRIMARY KEY (loc_id), 
+  CONSTRAINT `fk_locations_original_smartlocations_original` FOREIGN KEY (`blk_grp_id`)
+        REFERENCES `bikes`.`smartlocations_original` (`blk_grp_id`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION
+);
