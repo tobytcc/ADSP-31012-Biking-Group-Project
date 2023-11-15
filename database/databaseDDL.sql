@@ -85,8 +85,10 @@ CREATE TABLE IF NOT EXISTS divvytrips_original (
 );
 
 CREATE TABLE IF NOT EXISTS smartlocation_original (
-    tractce VARCHAR(255),
-    blkgrpce VARCHAR(255),
+    statefp INT,
+    countyfp INT,
+    tractce INT,
+    blkgrpce INT,
     totpop INT,
     counthu INT,
     hh INT,
