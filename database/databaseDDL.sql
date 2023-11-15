@@ -1,4 +1,4 @@
-CREATE TABLE CrashData_original (
+CREATE TABLE IF NOT EXISTS CrashData_original (
     CRASH_RECORD_ID INT AUTO_INCREMENT PRIMARY KEY,
     CRASH_DATE DATETIME,
     POSTED_SPEED_LIMIT INT,
@@ -26,67 +26,80 @@ CREATE TABLE CrashData_original (
 );
 
 
-CREATE TABLE BikeRacks_original (
-    Latitude DECIMAL(9,6),
-    Longitude DECIMAL(9,6),
-    Location VARCHAR(255),
-    Name VARCHAR(255),
-    Quantity INT,
-    Type VARCHAR(50)
+CREATE TABLE IF NOT EXISTS BikeRacks_original (	
+    LATITUDE DECIMAL(9,6),
+    LONGITUDE DECIMAL(9,6),
+    LOCATION VARCHAR(255),
+    NAME VARCHAR(255),
+    QUANTITY INT,
+    TYPE VARCHAR(50),
+    RACK_ID INT(10) NOT NULL AUTO_INCREMENT,
 );
 
-CREATE TABLE DivvyRacks_original (
-	rack_id INT PRIMARY KEY,
-    station_name VARCHAR(255),
-    address VARCHAR(255),
-    total_docks INT,
-    latitude DECIMAL(9,6),
-    longitude DECIMAL(9,6)
+CREATE TABLE IF NOT EXISTS DivvyStations_original (
+    STATION_ID INT PRIMARY KEY,
+    STATION_NAME VARCHAR(255),
+    ADDRESS VARCHAR(255),
+    TOTAL_DOCKS INT,
+    LATITUDE DECIMAL(9,6),
+    LONGITUDE DECIMAL(9,6)
 );
 
-CREATE TABLE DivvyTrips_original (
-    ride_id VARCHAR(255) PRIMARY KEY,
-    rideable_type VARCHAR(255),
-    started_at DATETIME,
-    ended_at DATETIME,
-    start_station_name VARCHAR(255),
-    start_station_id INT,
-    end_station_name VARCHAR(255),
-    end_station_id INT,
-    start_lat DECIMAL(9,6),
-    start_lng DECIMAL(9,6),
-    end_lat DECIMAL(9,6),
-    end_lng DECIMAL(9,6),
-    member_casual VARCHAR(50)
+CREATE TABLE IF NOT EXISTS DivvyTrips_original (
+    RIDE_ID VARCHAR(255) PRIMARY KEY,
+    RIDEABLE_TYPE VARCHAR(255),
+    STARTED_AT DATETIME,
+    ENDED_AT DATETIME,
+    START_STATION_NAME VARCHAR(255),
+    START_STATION_ID INT,
+    END_STATION_NAME VARCHAR(255),
+    END_STATION_ID INT,
+    START_LAT DECIMAL(9,6),
+    START_LNG DECIMAL(9,6),
+    END_LAT DECIMAL(9,6),
+    END_LNG DECIMAL(9,6),
+    MEMBER_CASUAL VARCHAR(50)
 );
 
-CREATE TABLE SmartLocation_original (
+CREATE TABLE IF NOT EXISTS SmartLocation_original (
     TRACTCE VARCHAR(255),
     BLKGRPCE VARCHAR(255),
-    TotPop INT,
-    CountHU INT,
+    TOTPOP INT,
+    COUNTHU INT,
     HH INT,
-    P_WrkAge DECIMAL(5,2),
-    AutoOwn0 INT,
-    Pct_AO0 DECIMAL(5,2),
-    AutoOwn1 INT,
-    Pct_AO1 DECIMAL(5,2),
-    AutoOwn2p INT,
-    Pct_AO2p DECIMAL(5,2),
-    R_LowWageWk INT,
-    R_MedWageWk INT,
-    R_HiWageWk INT,
-    R_PctLowWage DECIMAL(5,2),
-    TotEmp INT,
-    E_LowWageWk INT,
-    E_MedWageWk INT,
-    E_HiWageWk INT,
-    E_PctLowWage DECIMAL(5,2),
-    D3a DECIMAL(10,5),
-    D4a DECIMAL(10,5),
-    D5br INT,
-    D5be INT,
-    D5dr DECIMAL(10,5),
-    NatWalkInd DECIMAL(10,5)
+    P_WRKAGE DECIMAL(5,2),
+    AUTOOWN0 INT,
+    PCT_AO0 DECIMAL(5,2),
+    AUTOOWN1 INT,
+    PCT_AO1 DECIMAL(5,2),
+    AUTOOWN2P INT,
+    PCT_AO2P DECIMAL(5,2),
+    R_LOWWAGEWK INT,
+    R_MEDWAGEWK INT,
+    R_HIWAGEWK INT,
+    R_PCTLOWWAGE DECIMAL(5,2),
+    TOTEMP INT,
+    E_LOWWAGEWK INT,
+    E_MEDWAGEWK INT,
+    E_HIWAGEWK INT,
+    E_PCTLOWWAGE DECIMAL(5,2),
+    D3A DECIMAL(10,5),
+    D4A DECIMAL(10,5),
+    D5BR INT,
+    D5BE INT,
+    D5DR DECIMAL(10,5),
+    NATWALKIND DECIMAL(10,5)
+    TRACT_ID INT(10) NOT NULL AUTO_INCREMENT,
+
 );
 
+CREATE TABLE IF NOT EXISTS bikes.Locations_original (
+  `GEOID` BIGINT NOT NULL ,
+  `STATE` INT(10) NOT NULL ,
+  `COUNTY` INT(10) NOT NULL ,
+  `TRACT` INT(10) NOT NULL ,
+  `BLOCKGRP` INT(10) NOT NULL ,
+  `LAT` FLOAT NOT NULL ,
+  `LNG` FLOAT NOT NULL ,
+  `LOC_ID` INT(10) NOT NULL , 
+  PRIMARY KEY (`LOC_ID`));
