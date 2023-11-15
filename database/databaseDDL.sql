@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS CrashData_original (
     PRIMARY KEY(CRASH_RECORD_ID), 
     CONSTRAINT `fk_CrashData_original_Locations_original` FOREIGN KEY (`loc_id`)
         REFERENCES `bikes`.`Locations_original` (`loc_id`)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS BikeRacks_original (
     PRIMARY KEY(RACK_ID), 
     CONSTRAINT `fk_BikeRacks_original_Locations_original` FOREIGN KEY (`loc_id`)
         REFERENCES `bikes`.`Locations_original` (`loc_id`)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS DivvyStations_original (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS DivvyStations_original (
     PRIMARY KEY(STATION_ID),
     CONSTRAINT `fk_DivvyStations_original_Locations_original` FOREIGN KEY (`loc_id`)
         REFERENCES `bikes`.`Locations_original` (`loc_id`)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS DivvyTrips_original (
@@ -118,4 +118,9 @@ CREATE TABLE IF NOT EXISTS bikes.Locations_original (
   `LAT` FLOAT NOT NULL ,
   `LNG` FLOAT NOT NULL ,
   `LOC_ID` INT(10) NOT NULL , 
-  PRIMARY KEY (`LOC_ID`));
+  `BLK_GRP_ID` NOT NULL 
+  PRIMARY KEY (`LOC_ID`), 
+  CONSTRAINT `fk_Locations_original_SmartLocations_original` FOREIGN KEY (`BLK_GRP_ID`)
+        REFERENCES `bikes`.`SmartLocations_original` (`BLK_GRP_ID`)
+        ON DELETE NO ACTION ON UPDATE NO ACTION
+    );
