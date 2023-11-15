@@ -1,5 +1,4 @@
-CREATE TABLE IF NOT EXISTS crashdata_original (
-    crash_record_id INT AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS crashdata_original (,
     crash_date DATETIME,
     posted_speed_limit INT,
     traffic_control_device VARCHAR(255),
@@ -21,9 +20,10 @@ CREATE TABLE IF NOT EXISTS crashdata_original (
     crash_hour INT,
     crash_day VARCHAR(255),
     crash_month INT,
-    loc_id INT, 
     latitude DECIMAL(9,6),
     longitude DECIMAL(9,6), 
+    crash_record_id INT AUTO_INCREMENT,
+    loc_id INT, 
     PRIMARY KEY(crash_record_id), 
     CONSTRAINT `fk_crashdata_original_locations_original` FOREIGN KEY (`loc_id`)
         REFERENCES `bikes`.`locations_original` (`loc_id`)
