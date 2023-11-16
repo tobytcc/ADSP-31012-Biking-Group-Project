@@ -126,4 +126,6 @@ JOIN locations_original l ON
   AND dt.end_lat = l.lat
 SET ds.end_loc_id = l.loc_id;
 
+DROP TABLE IF EXISTS
+
 SHOW TABLES;
