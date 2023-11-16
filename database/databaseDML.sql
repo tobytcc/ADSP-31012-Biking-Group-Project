@@ -91,31 +91,31 @@ SET l.blk_grp_id = sl.blk_grp_id;
 UPDATE crashdata_original c
 JOIN locations_original l ON 
   c.longitude = l.lng
-  c.latitude = l.lat
+  AND c.latitude = l.lat
 SET c.loc_id = l.loc_id;
 
 UPDATE bikerack_original b
 JOIN locations_original l ON 
   b.longitude = l.lng
-  b.latitude = l.lat
+  AND b.latitude = l.lat
 SET b.loc_id = l.loc_id;
 
 UPDATE divvystation_original ds
 JOIN locations_original l ON 
   ds.longitude = l.lng
-  ds.latitude = l.lat
+  AND ds.latitude = l.lat
 SET ds.loc_id = l.loc_id;
 
 UPDATE divvytrips_original dt
 JOIN locations_original l ON 
   dt.start_lng = l.lng
-  dt.start_lat = l.lat
+  AND dt.start_lat = l.lat
 SET ds.start_loc_id = l.loc_id;
 
 UPDATE divvytrips_original dt
 JOIN locations_original l ON 
   dt.end_lng = l.lng
-  dt.end_lat = l.lat
+  AND dt.end_lat = l.lat
 SET ds.end_loc_id = l.loc_id;
 
 SHOW TABLES;

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS crashdata_original (,
+CREATE TABLE IF NOT EXISTS crashdata_original (
     crash_date DATETIME,
     posted_speed_limit INT,
     traffic_control_device VARCHAR(255),
@@ -48,7 +48,6 @@ CREATE TABLE IF NOT EXISTS bikeracks_original (
 CREATE TABLE IF NOT EXISTS divvystations_original (
     station_id INT,
     station_name VARCHAR(255),
-    address VARCHAR(255),
     total_docks INT,
     latitude FLOAT,
     longitude FLOAT, 
@@ -129,7 +128,7 @@ CREATE TABLE IF NOT EXISTS bikes.locations_original (
   loc_id INT(10) NOT NULL , 
   blk_grp_id INT NOT NULL ,
   PRIMARY KEY (loc_id), 
-  CONSTRAINT `fk_locations_original_smartlocations_original` FOREIGN KEY (`blk_grp_id`)
-        REFERENCES `bikes`.`smartlocations_original` (`blk_grp_id`)
+  CONSTRAINT `fk_locations_original_smartlocation_original` FOREIGN KEY (`blk_grp_id`)
+        REFERENCES `bikes`.`smartlocation_original` (`blk_grp_id`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
