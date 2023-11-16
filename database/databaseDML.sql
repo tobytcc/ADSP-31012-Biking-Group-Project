@@ -12,6 +12,16 @@ ENCLOSED BY '"'
 LINES TERMINATED BY "\n"
 IGNORE 1 ROWS;
 
+# Locations
+LOAD DATA LOCAL INFILE '/Users/hank/Documents/UChicago/Data Engineering Platforms/Final Project/Location_Mapping.csv' 
+INTO TABLE locations_original
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS  ;
+ALTER TABLE locations_original
+DROP COLUMN geoid;
+
 # Bike Racks
 LOAD DATA LOCAL INFILE "C:/Users/tobyt/Documents/UChicago Coding/ADSP 31012 Data Engineering Platforms for Analytics/ADSP-31012-Biking-Group-Project/data/Bike_Racks.csv"
 INTO TABLE bikeracks_original
@@ -81,8 +91,6 @@ JOIN smartlocation_original sl ON
   AND l.tract = sl.tractce
   AND l.blockgrp = sl.blkgrpce
 SET l.blk_grp_id = sl.blk_grp_id;
-ALTER TABLE locations
-DROP COLUMN geoid;
 
 SELECT * FROM locations_original;
 
