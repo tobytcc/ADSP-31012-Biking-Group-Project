@@ -1,12 +1,13 @@
 # University of Chicago - Data Engineering Platforms for Analytics (ADSP 31012) Final Project
 
-# Evaluation of key investment areas towards Chicago bike infrastructure to increase city bikeability and decrease road deaths
+**Evaluation of key investment areas towards Chicago bike infrastructure to increase city bikeability and decrease road deaths**
 
 Team Members:
 - [Hank Snowdon](https://github.com/hanksnowdon)
 - [Christian Piantanida](https://github.com/cpiantanida12)
 - [Daichi Ishikawa](https://github.com/daichi6)
 - [Toby Chiu](https://github.com/tobytcc)
+
 
 The README contains only a brief overview of our goals, investigation process, analysis, and recommendations.
 
@@ -31,10 +32,15 @@ We transformed our initial OLTP model into a OLAP snowflake schema, to structure
 
 ## Insights: We have identified 3 key problems and areas of improvements regarding biking in Chicago:
 1. There are significant high-volume crash areas in Chicago, particularly downtown and key arterial roads in N Milwaukee Ave and N Clark St.
+
 ![Milwaukee/Clark](/img/Clark_Milwaukee.png)
+
 2. The city has numerous low-traffic bike areas which critically need bike access, especially in poorer, low accessibility areas in south/west Chicago.
+
 ![Low Bike Access](/img/low%20bike%20accessibility.png)
+
 3. Bike racks and Divvy stations are often few and far between
+
 ![Poor Bike Storage Infrastructure](/img/bike_divvy%20racks.png)
 
 ## Recommendations
